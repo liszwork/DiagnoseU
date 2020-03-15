@@ -1,22 +1,26 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld/>
+    <Sample/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Sample from './components/Sample'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Sample
   }
 }
 </script>
 
 <style>
+body, body *{
+  background: #333;
+  color: #ccc;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
