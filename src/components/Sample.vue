@@ -38,17 +38,11 @@ export default {
   data() {
     return {
       isAnswer: false,
-      questions: [
-        { id: "1", text: "item1" },
-        { id: "2", text: "item2" },
-        { id: "3", text: "item3" },
-        { id: "4", text: "item4" }
-      ],
       items: [
         {
           id: 1,
           question: "Q1 text...",
-          answer: ["a1", "b1", "c1"],
+          answer: ["a1", "b1"],
           select: -1
         },
         {
