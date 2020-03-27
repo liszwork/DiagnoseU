@@ -3,18 +3,16 @@
     <h1>Test</h1>
 
     <div class="qa" v-if="!isAnswer">
-      <div class="question" v-for="item in items" :key="item.id">
-        <p>Q{{ item.id }}</p>
-        <p>{{ item.question }}</p>
-        <div class="answers">
-          <label v-for="(answer, id) in item.answer">
-            <input type="radio" :value="id" v-model="item.select" />
-            {{ answer }}
-          </label>
-        </div>
-        <p>{{ item.select }}</p>
-      </div>
-      <button @click="onAnswer">Commit</button>
+      <v-card class="question" v-for="item in items" :key="item.id" color="#AACCFF">
+        <v-card-title>Q{{ item.id }} {{ item.question }}</v-card-title>
+        <v-card-actions>
+          <v-radio-group column="true">
+            <v-radio v-for="(answer, id) in item.answer" :key="answer" :label="answer" :value="id" color="#0F0"></v-radio>
+          </v-radio-group>
+          <p>{{ item.select }}</p>
+        </v-card-actions>
+      </v-card>
+      <v-btn large color="primary"  @click="onAnswer">Commit</v-btn>
     </div>
 
     <div class="result" v-if="isAnswer">
@@ -78,4 +76,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.question {
+  margin: 10px;
+}
 </style>
