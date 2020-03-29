@@ -1,18 +1,23 @@
 <template>
-  <div class="sample">
+  <v-content class="sample">
     <h1>Test</h1>
 
     <div class="qa" v-if="!isAnswer">
       <v-card class="question" v-for="item in items" :key="item.id" color="#AACCFF">
-        <v-card-title>Q{{ item.id }} {{ item.question }}</v-card-title>
+        <v-card-title>Q{{ item.id }}: {{ item.question }}</v-card-title>
         <v-card-actions>
-          <v-radio-group column="true">
-            <v-radio v-for="(answer, id) in item.answer" :key="answer" :label="answer" :value="id" color="#0F0"></v-radio>
+          <v-radio-group v-model="item.select">
+            <v-radio
+              v-for="(answer, id) in item.answer"
+              :key="answer"
+              :label="answer"
+              :value="id"
+            ></v-radio>
           </v-radio-group>
           <p>{{ item.select }}</p>
         </v-card-actions>
       </v-card>
-      <v-btn large color="primary"  @click="onAnswer">Commit</v-btn>
+      <v-btn class="commit-button" x-large :ripple="{ center: true }" color="primary" @click="onAnswer">Commit</v-btn>
     </div>
 
     <div class="result" v-if="isAnswer">
@@ -26,8 +31,8 @@
         </div>
       </div>
       <button @click="onBack">Back</button>
-      </div>
-  </div>
+    </div>
+  </v-content>
 </template>
 
 <script>
@@ -35,6 +40,8 @@ export default {
   name: "Sample",
   data() {
     return {
+      valid: false,
+      sex: true,
       isAnswer: false,
       items: [
         {
@@ -49,7 +56,7 @@ export default {
           answer: ["a2", "b2", "c2"],
           select: -1
         }
-      ],
+      ]
     };
   },
   methods: {
@@ -78,5 +85,8 @@ export default {
 <style scoped>
 .question {
   margin: 10px;
+}
+.commit-button {
+  background: blue;
 }
 </style>
