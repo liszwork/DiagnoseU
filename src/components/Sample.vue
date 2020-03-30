@@ -1,37 +1,54 @@
 <template>
   <v-content class="sample">
-    <h1>Test</h1>
+    <v-container fluid >
+      <h1>Test</h1>
 
-    <div class="qa" v-if="!isAnswer">
-      <v-card class="question" v-for="item in items" :key="item.id" color="#AACCFF">
-        <v-card-title>Q{{ item.id }}: {{ item.question }}</v-card-title>
-        <v-card-actions>
-          <v-radio-group v-model="item.select">
-            <v-radio
-              v-for="(answer, id) in item.answer"
-              :key="answer"
-              :label="answer"
-              :value="id"
-            ></v-radio>
-          </v-radio-group>
-          <p>{{ item.select }}</p>
-        </v-card-actions>
-      </v-card>
-      <v-btn class="commit-button" x-large :ripple="{ center: true }" color="primary" @click="onAnswer">Commit</v-btn>
-    </div>
-
-    <div class="result" v-if="isAnswer">
-      <p>result</p>
-      <p>Your selections</p>
-      <div class="question" v-for="item in items" :key="item.id">
-        <p>Q{{ item.id }}</p>
-        <p>{{ item.question }}</p>
-        <div class="answers">
-          <p>{{ item.select }} : {{ item.answer[item.select] }}</p>
-        </div>
+      <div class="qa" v-if="!isAnswer">
+        <v-card class="question" v-for="item in items" :key="item.id" color="#AACCFF">
+          <v-card-title>Q{{ item.id }}: {{ item.question }}</v-card-title>
+          <v-card-actions>
+            <v-radio-group v-model="item.select">
+              <v-radio
+                v-for="(answer, id) in item.answer"
+                :key="answer"
+                :label="answer"
+                :value="id"
+              ></v-radio>
+            </v-radio-group>
+            <!-- <p>{{ item.select }}</p> -->
+          </v-card-actions>
+        </v-card>
+        <v-btn
+          class="commit-button"
+          x-large
+          :ripple="{ center: true }"
+          color="primary"
+          @click="onAnswer"
+        >Commit</v-btn>
       </div>
-      <button @click="onBack">Back</button>
-    </div>
+
+      <div class="result" v-if="isAnswer">
+        <h2>result</h2>
+        <p>Your selections</p>
+        <v-card class="question" color="#AACCFF">
+          <div v-for="item in items" :key="item.id">
+            <v-card-title>Q{{ item.id }}: {{ item.question }}</v-card-title>
+            <v-card-text>
+              <v-list-item-subtitle
+                class="text--primary"
+              >{{ item.select }} : {{ item.answer[item.select] }}</v-list-item-subtitle>
+            </v-card-text>
+          </div>
+        </v-card>
+        <v-btn
+          class="commit-button"
+          x-large
+          :ripple="{ center: true }"
+          color="primary"
+          @click="onBack"
+        >Back</v-btn>
+      </div>
+    </v-container>
   </v-content>
 </template>
 
@@ -87,6 +104,6 @@ export default {
   margin: 10px;
 }
 .commit-button {
-  background: blue;
+  text-align: center;
 }
 </style>
