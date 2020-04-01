@@ -1,23 +1,25 @@
 <template>
   <v-app>
     <v-content>
-      <Sample/>
+      <SampleParent />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Sample from './components/Sample'
+import SampleParent from "./components/SampleParent";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-	Sample,
+    SampleParent,
+    // Sample,
+    // SampleResult
   },
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>
