@@ -1,14 +1,18 @@
 <template>
   <v-container fluid>
+    <!-- TODO: 診断結果の詳細 -->
     <p class="display-1">あなたは {{ resultMessage }}</p>
     <v-card class="detail" color="#AACCFF">
-      <h3>選択した内容</h3>
-      <div v-for="item in items" :key="item.id">
-        <v-card-title>Q{{ item.id }}: {{ item.question }}</v-card-title>
+      <v-card-title class="title font-weight-black" color="#AACCFF">
+        選択した内容
+      </v-card-title>
+      <!-- 選択内容の確認 -->
+      <v-card class="card-inner" v-for="item in items" :key="item.id" color="#BBDDFF">
+        <v-card-title class="subtitle-1">Q{{ item.id }}: {{ item.question }}</v-card-title>
         <v-card-text>
-          <v-list-item-subtitle class="text--primary">{{ item.select }} : {{ answers[item.select] }}</v-list-item-subtitle>
+          <v-list-item-subtitle class="body-1	">{{ answers[item.select] }}</v-list-item-subtitle>
         </v-card-text>
-      </div>
+      </v-card>
     </v-card>
     <v-btn
       class="commit-button"
@@ -61,5 +65,12 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px 10px 10px 10px;
+}
+.card-title {
+  /* margin: 0 0 0 0; */
+}
+.card-inner {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>
