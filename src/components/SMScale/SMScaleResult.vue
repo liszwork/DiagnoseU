@@ -1,10 +1,6 @@
 <template>
   <v-container fluid>
-    <h2>result</h2>
-    <p>Your selections</p>
-    <v-card class="result" color="#AACCFF">
-      <h3>あなたは {{ resultMessage }}</h3>
-    </v-card>
+    <h2>あなたは {{ resultMessage }}</h2>
     <v-card class="detail" color="#AACCFF">
       <h3>あなたが選択した内容</h3>
       <div v-for="item in items" :key="item.id">
@@ -60,5 +56,10 @@ export default {
 }
 .commit-button {
   text-align: center;
+}
+.detail {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 10px 10px 10px;
 }
 </style>

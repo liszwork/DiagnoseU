@@ -53,9 +53,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .question {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 10px 10px 10px;
 }
 .commit-button {
   text-align: center;
+  margin-top: 10px;
 }
 </style>
