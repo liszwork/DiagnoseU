@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
-    <h2>あなたは {{ resultMessage }}</h2>
+    <p class="display-1">あなたは {{ resultMessage }}</p>
     <v-card class="detail" color="#AACCFF">
-      <h3>あなたが選択した内容</h3>
+      <h3>選択した内容</h3>
       <div v-for="item in items" :key="item.id">
         <v-card-title>Q{{ item.id }}: {{ item.question }}</v-card-title>
         <v-card-text>
