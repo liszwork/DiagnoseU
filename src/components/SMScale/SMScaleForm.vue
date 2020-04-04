@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card class="question" v-for="item in items" :key="item.id" color="#AACCFF">
-      <v-card-title>Q{{ item.id }}: {{ item.question }}</v-card-title>
+      <v-card-title class="title">Q{{ item.id }}: {{ item.question }}</v-card-title>
       <p class="error-text" v-if="validation(item.select)">入力してください。</p>
       <v-card-actions>
         <v-radio-group v-model="item.select">
@@ -22,19 +22,14 @@
 <script>
 export default {
   name: "SMScaleForm",
-  props: [
-    "items",
-    "answers",
-    "point",
-  ],
-  computed: {
-  },
+  props: ["items", "answers", "point"],
+  computed: {},
   data() {
     return {
       radioConstant: {
         default: -1,
-        error: -2,
-      },
+        error: -2
+      }
     };
   },
   methods: {
@@ -49,18 +44,18 @@ export default {
           isOK = false;
           item.select = -2;
         }
-        sumPt += (item.select + 1);
+        sumPt += item.select + 1;
       }
       // this.point = sumPt;
       // 親に通知
       if (isOK) {
-        this.$emit('commit', sumPt);
+        this.$emit("commit", sumPt);
       }
     },
     validation(select) {
       // ラジオボタンエラー判定
-      return (select == -2);
-    },
+      return select == -2;
+    }
   }
 };
 </script>

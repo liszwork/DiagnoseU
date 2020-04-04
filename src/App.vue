@@ -2,9 +2,7 @@
   <v-app :dark="setTheme">
     <v-content>
       <v-toolbar color="blue">
-        <v-toolbar-title>
-          {{ title }}
-        </v-toolbar-title>
+        <v-toolbar-title class="display-1 font-weight-black">{{ title }}</v-toolbar-title>
       </v-toolbar>
 
       <!-- <v-switch label="Dark Theme" v-model="isDark"></v-switch> -->
@@ -26,7 +24,7 @@ export default {
   },
   data: () => ({
     isDark: false,
-    title: "自分を知ろう！",
+    title: "自分を知ろう！"
   }),
   methods: {
     updateTitle(title) {
@@ -35,8 +33,8 @@ export default {
   },
   computed: {
     setTheme() {
-      return this.$vuetify.theme.dark = (this.isDark == true);
-    },
+      return (this.$vuetify.theme.dark = this.isDark == true);
+    }
   }
 };
 </script>
