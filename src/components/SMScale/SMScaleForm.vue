@@ -44,7 +44,9 @@ export default {
       }
       // this.point = sumPt;
       // 親に通知
-      this.$emit('commit', sumPt);
+      if (isOK) {
+        this.$emit('commit', sumPt);
+      }
     }
   }
 };
