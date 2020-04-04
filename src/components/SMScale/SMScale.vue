@@ -1,10 +1,20 @@
 <template>
   <v-content class="sample">
     <v-container fluid>
-      <h1>SM尺度診断</h1>
-
-      <SMScaleForm v-if="!isAnswer" :items="items" :answers="answers" :point="point" @commit="toResult" />
-      <SMScaleResult v-if="isAnswer" :items="items" :answers="answers" :point="point" @back="toQuestion" />
+      <SMScaleForm
+        v-if="!isAnswer"
+        :items="items"
+        :answers="answers"
+        :point="point"
+        @commit="toResult"
+      />
+      <SMScaleResult
+        v-if="isAnswer"
+        :items="items"
+        :answers="answers"
+        :point="point"
+        @back="toQuestion"
+      />
     </v-container>
   </v-content>
 </template>
@@ -17,29 +27,31 @@ export default {
   name: "SMScale",
   components: {
     SMScaleForm,
-    SMScaleResult,
+    SMScaleResult
   },
   data: () => {
     return {
       isAnswer: false,
       point: 0,
       answers: [
-        "全然当てはまらない",     // 0 - 1pt
+        "全然当てはまらない", // 0 - 1pt
         "あまり当てはまらない",
         "やや当てはまる",
-        "かなり当てはまる",       // 3 - 4pt
+        "かなり当てはまる" // 3 - 4pt
       ],
       items: [
         {
           id: 1,
-          question: "話をしているときには，相手の表情のわずかな変化にも敏感になる。",
-          select: -1,
+          question:
+            "話をしているときには，相手の表情のわずかな変化にも敏感になる。",
+          select: -1
         },
         {
           id: 2,
-          question: "目をみれば，その人のほんとうの気持ちを正確に読み取ることができる。",
-          select: -1,
-        },
+          question:
+            "目をみれば，その人のほんとうの気持ちを正確に読み取ることができる。",
+          select: -1
+        }
         // {
         //   id: 3,
         //   question: "だれかが自分にうそをついても，表情やしぐさですぐにうそだと見抜くことができる。",
@@ -95,7 +107,7 @@ export default {
         //   question: "相手にどのような印象でも与えることができる。",
         //   select: -1,
         // },
-      ],
+      ]
     };
   },
   methods: {
@@ -106,6 +118,9 @@ export default {
     toQuestion() {
       this.isAnswer = false;
     }
+  },
+  created: function() {
+    this.$emit("update-title", "SM尺度診断");
   }
 };
 </script>
