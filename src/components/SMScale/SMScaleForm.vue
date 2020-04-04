@@ -2,6 +2,7 @@
   <v-container fluid>
     <v-card class="question" v-for="item in items" :key="item.id" color="#AACCFF">
       <v-card-title>Q{{ item.id }}: {{ item.question }}</v-card-title>
+      <p class="error-text" v-if="validation(item.select)">入力してください。</p>
       <v-card-actions>
         <v-radio-group v-model="item.select">
           <v-radio v-for="(answer, index) in answers" :key="answer" :label="answer" :value="index"></v-radio>
@@ -26,19 +27,27 @@ export default {
     "answers",
     "point",
   ],
+  computed: {
+  },
   data() {
     return {
+      radioConstant: {
+        default: -1,
+        error: -2,
+      },
     };
   },
   methods: {
     onAnswer(event) {
+      // 結果に進んでもいい？
       var isOK = true;
       var sumPt = 0;
       for (let i = 0; i < this.items.length; i++) {
         const item = this.items[i];
         if (item.select < 0) {
+          // 発見したら留まる&対象要素をエラーにする
           isOK = false;
-          break;
+          item.select = -2;
         }
         sumPt += (item.select + 1);
       }
@@ -47,7 +56,11 @@ export default {
       if (isOK) {
         this.$emit('commit', sumPt);
       }
-    }
+    },
+    validation(select) {
+      // ラジオボタンエラー判定
+      return (select == -2);
+    },
   }
 };
 </script>
@@ -62,5 +75,8 @@ export default {
 .commit-button {
   text-align: center;
   margin-top: 10px;
+}
+.error-text {
+  color: red;
 }
 </style>
