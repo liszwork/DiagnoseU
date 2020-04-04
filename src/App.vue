@@ -1,6 +1,7 @@
 <template>
-  <v-app>
+  <v-app :dark="setTheme">
     <v-content>
+      <!-- <v-switch label="Dark Theme" v-model="isDark"></v-switch> -->
       <SMScale />
       <!-- <SampleParent /> -->
     </v-content>
@@ -13,14 +14,17 @@ import SMScale from "./components/SMScale/SMScale";
 
 export default {
   name: "App",
-
   components: {
     SampleParent,
-    SMScale,
+    SMScale
   },
-
   data: () => ({
-    //
-  })
+    isDark: false,
+  }),
+  computed: {
+    setTheme() {
+      return this.$vuetify.theme.dark = (this.isDark == true);
+    }
+  }
 };
 </script>
